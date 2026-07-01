@@ -7,13 +7,12 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public void register(User user) {
+    public void register(String name , String email) {
         // existsByEmailでtrueならIllegalStateExceptionをスローし、falseなら保存処理をする
-        String email =  user.getMailAddress() ;
         if (userRepository.existsByEmail(email) ){
             throw new IllegalStateException();
         } else {
-            userRepository.save(user);
+            userRepository.save( name , email );
         }
     }
 }
